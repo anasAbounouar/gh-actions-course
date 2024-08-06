@@ -3,13 +3,26 @@ on: push
 jobs: 
     build:
         runs-on: ubuntu-latest
+        defaults:
+          run: 
+            working-directory: 04-using-actions/react-app
         steps:
             # 0 checkout the code from the repository
 
             - name: Checkout code
               uses: actions/checkout@v4
+              # print folers from root 
             - name: Printing Folders
               run: ls
+            - name: Set up node
+              uses: actions/setup-node@v3
+              with:
+                node-version: '20.x'
+            - name: install dependencies
+              run: npm ci
+            - name: Run unit tests
+              run: npm run test
+              
 
         
         # 1 install dependencies of react app
