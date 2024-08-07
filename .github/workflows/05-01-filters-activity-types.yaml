@@ -1,7 +1,6 @@
 name: 05-01- Event Filters and activity types
 
 on:
-
     pull_request:
         branches:
             - main
