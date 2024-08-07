@@ -1,30 +1,45 @@
 name: 06 - contexts
-run-name: 06-contexts | Debug -- ${{inputs.debug}}
+run-name: 06-contexts | Debug -- ${{ inputs.debug }}
 
 on: 
-    workflow_dispatch:
-        inputs: 
-            debug:
-                type: boolean
-                default: false
+  workflow_dispatch:
+    inputs: 
+      debug:
+        type: boolean
+        default: false
+
 env:
-    MY_WORKFLOW_VAR: "my worfklow "
-    MY_OVERWRITTEN_VAR: "my workflow"
+  MY_WORKFLOW_VAR: "my workflow"
+  MY_OVERWRITTEN_VAR: "my workflow"
+
 jobs:
-    echo-data:
-        runs-on: ubuntu-latest
-        steps:
-            - name: Display information
-              run: |
-                echo "Event name ${{github.event_name}}"
-                echo " Ref is: ${{github.ref}}"
-                echo "SHA is : ${{github.sha}}"
-                echo "Actor is:  ${{github.actor}}"
-                echo "Workflow is:  ${{github.workflow}}"
-                echo "Run id  is:  ${{github.run_id}}"
-                echo "Run number  is:  ${{github.run_number}}"
-            - name: Retrieve variables
-              run: |
-                echo "variable value is : ${{vars.MY_VAR }}"
-            - name: env variable printing
-              run: echo "my worfkflow variables is ${{env.MY_WORKFLOW_VAR}}"
+  echo-data:
+    runs-on: ubuntu-latest
+    env:
+      MY_JOB_VAR: "my job"
+      MY_OVERWRITTEN_VAR: "my job"
+    steps:
+      - name: Display information
+        run: |
+          echo "Event name: ${{ github.event_name }}"
+          echo "Ref is: ${{ github.ref }}"
+          echo "SHA is: ${{ github.sha }}"
+          echo "Actor is: ${{ github.actor }}"
+          echo "Workflow is: ${{ github.workflow }}"
+          echo "Run id is: ${{ github.run_id }}"
+          echo "Run number is: ${{ github.run_number }}"
+          
+      - name: Retrieve variables
+        run: |
+          echo "Variable value is: ${{ vars.MY_VAR }}"
+          
+      - name: Env variable printing but step will overwrite
+        env: MY_OVERWRITTEN_VAR: 'step'
+
+        run: |
+        echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
+        echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
+      - name: Env variable printing but job will overwrite 
+        run: |
+        echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
+        echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
