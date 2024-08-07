@@ -34,12 +34,13 @@ jobs:
           echo "Variable value is: ${{ vars.MY_VAR }}"
           
       - name: Env variable printing but step will overwrite
-        env: MY_OVERWRITTEN_VAR: 'step'
-
+        env: 
+          MY_OVERWRITTEN_VAR: 'step'
         run: |
-        echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
-        echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
+          echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
+          echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
+
       - name: Env variable printing but job will overwrite 
         run: |
-        echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
-        echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
+          echo "My workflow variable is: ${{ env.MY_WORKFLOW_VAR }}"
+          echo "My overwritten variable is: ${{ env.MY_OVERWRITTEN_VAR }}"
