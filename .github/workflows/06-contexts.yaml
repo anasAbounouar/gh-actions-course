@@ -7,6 +7,9 @@ on:
             debug:
                 type: boolean
                 default: false
+env:
+    MY_WORKFLOW_VAR: "my worfklow "
+    MY_OVERWRITTEN_VAR: "my workflow"
 jobs:
     echo-data:
         runs-on: ubuntu-latest
@@ -23,3 +26,5 @@ jobs:
             - name: Retrieve variables
               run: |
                 echo "variable value is : ${{vars.MY_VAR }}"
+            - name: env variable printing
+              run: echo "my worfkflow variables is ${{env.MY_WORKFLOW_VAR}}"
