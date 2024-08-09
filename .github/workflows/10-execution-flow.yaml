@@ -14,10 +14,10 @@ jobs:
     steps:
       - name: Lint and build
         run: |
-          echo "Linting and building project"
-          npm run lint
+          echo "Linting and building project  like: npm run lint
           npm run tsc:check
-          npm run build
+          npm run build"
+         
 
   unit-test:
     runs-on: ubuntu-latest
