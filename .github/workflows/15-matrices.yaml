@@ -1,18 +1,25 @@
 name: 15_working_with_Matrices
 
 on:
-  workflow_dispatch:
+    workflow_dispatch:
+    push:
 
 jobs:
   backwards-compatibility:
     name: ${{ matrix.os }} - Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
+    
     strategy:
       matrix:
         node-version: [18, 20, 21]
         os: [ubuntu-latest, windows-latest]
 
     steps:
+      - name: Debug information
+        run: |
+         node -v
+         npm -v
+         npm list
       - name: Checkout repository
         uses: actions/checkout@v3
 
