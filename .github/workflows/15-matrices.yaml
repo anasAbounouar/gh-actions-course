@@ -1,20 +1,28 @@
-name: 15 _ working with Matrices
+name: 15_working_with_Matrices
 
 on:
-    workflow_dispatch:
+  workflow_dispatch:
+
 jobs:
-    backwards-compatibility:
-        name: ${{matrix.os}} - ${{matrix.node-version}}
-        runs-on: ${{matrix.os}}
-        strategy:
-            matrix:
-                node-version: [18.x, 20.x, 21.x]
-                os:
-                    - ubuntu-latest
-                    - windows-latest
-        steps:
-            - name: Setup node 
-              uses: actions/setup-node@v4
-              with: ${{matrix.node-version}}
-            - name: Perform some tests
-              run: echo "Running tests on Os ${{matrix.os}} and NodeJs ${{ matrix.node-version}}"
+  backwards-compatibility:
+    name: ${{ matrix.os }} - Node.js ${{ matrix.node-version }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node-version: [18, 20, 21]
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Perform some tests
+        run: echo "Running tests on OS ${{ matrix.os }} and Node.js ${{ matrix.node-version }}"
