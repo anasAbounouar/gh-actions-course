@@ -1,32 +1,33 @@
 name: 15_working_with_Matrices
 
 on:
-    workflow_dispatch:
-    push:
+  workflow_dispatch:
+  push:
 
 jobs:
   backwards-compatibility:
     name: ${{ matrix.os }} - Node.js ${{ matrix.node-version }}
     runs-on: ${{ matrix.os }}
-    
     strategy:
+      fail-fast: true
       matrix:
-        node-version: [18, 20   ]
+        node-version: [18, 20]
         os: [ubuntu-latest, windows-latest]
-
+        include:
+          - os: ubuntu-latest
+            node-version: 16.x
+          - os: ubuntu-latest
+            node-version: 20
+            tag: experimental
     steps:
-      - name: Debug information
-        run: |
-         node -v
-         npm -v
-         npm list
+      - name: Fail if experimental
+        if: ${{matrix.tag=='experimental'}}
+        run: exit 1
       - name: Checkout repository
         uses: actions/checkout@v3
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-
       - name: Perform some tests
         run: echo "Running tests on OS ${{ matrix.os }} and Node.js ${{ matrix.node-version }}"
