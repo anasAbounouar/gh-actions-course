@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v4
       - name: fixing shit
         run: |
-          cd ./github
+          
           ls -R
       - name: Setup Node and NPM Packages
         uses: ./github/actions/composite-cache-deps
