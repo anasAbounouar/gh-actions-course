@@ -2,7 +2,6 @@ name: 15_working_with_Matrices
 
 on:
   workflow_dispatch:
-  push:
 
 jobs:
   backwards-compatibility:
@@ -20,14 +19,12 @@ jobs:
             node-version: 20
             tag: experimental
     steps:
-      - name: Fail if experimental
-        if: ${{matrix.tag=='experimental'}}
-        run: exit 1
       - name: Checkout repository
         uses: actions/checkout@v3
-      - name: Setup Node.js
+      - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
       - name: Perform some tests
         run: echo "Running tests on OS ${{ matrix.os }} and Node.js ${{ matrix.node-version }}"
+             
