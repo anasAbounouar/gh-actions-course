@@ -13,7 +13,7 @@ jobs:
     steps:
         - uses: actions/checkout@v4
         - name: check directories
-          run: ls -a
+          run: ls -R .github/actions/composite-cache-deps/
 
   build:
     runs-on: ubuntu-latest
