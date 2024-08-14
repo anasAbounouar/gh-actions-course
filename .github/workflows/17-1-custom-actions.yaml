@@ -21,7 +21,12 @@ jobs:
       run:
         working-directory: ${{ env.working-directory }}
     steps:
+
       - uses: actions/checkout@v4
+      - name: fixing shit
+        run: |
+          cd ./github
+          ls -R
       - name: Setup Node and NPM Packages
         uses: ./github/actions/composite-cache-deps
         with:
