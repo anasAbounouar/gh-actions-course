@@ -16,3 +16,7 @@ jobs:
               with:
                 node-version: 2O.x
                 working-dir: ${{env.working-directory}}
+            - name: Test
+              run: npm run test
+            - name: build
+              run: npm run build
