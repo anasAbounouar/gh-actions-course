@@ -7,6 +7,12 @@ env:
   working-directory: 17-custom-actions/react-app
 
 jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+        - name: check directories
+          run: ls -a
+
   build:
     runs-on: ubuntu-latest
     defaults:
@@ -14,7 +20,6 @@ jobs:
         working-directory: ${{ env.working-directory }}
     steps:
       - uses: actions/checkout@v4
-        
       - name: Setup Node and NPM Packages
         uses: ./github/actions/composite-cache-deps
         with:
