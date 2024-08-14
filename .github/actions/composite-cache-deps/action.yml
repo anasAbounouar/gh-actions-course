@@ -1,18 +1,18 @@
 name: 'Cache Node and NPM Dependencies'
 description: 'This action caches Node and NPM dependencies based on the package-lock.json file.'
-
 inputs:
   node-version:
     description: 'Node version to use'
     required: true
     default: '20.x'
   working-dir:
-    description: 'The working directory'
+    description: The working directory of the application 
+    default: .
     required: false
-    default: '.'
+    
 
 runs:
-  using: 'composite'
+  using: composite
   steps:
     - name: Setup Node.js
       uses: actions/setup-node@v4
