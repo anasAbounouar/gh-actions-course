@@ -1,0 +1,5 @@
+name: Update NPM packages 
+description: Checks if there are updates to NPM packages , and creates PR with the updates packes *.json files.
+runs:
+  using: node20
+  main: index.js

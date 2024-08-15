@@ -9,8 +9,6 @@ inputs:
     description: The working directory of the application 
     default: .
     required: false
-    
-
 runs:
   using: composite
   steps:

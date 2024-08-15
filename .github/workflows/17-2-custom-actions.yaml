@@ -1,0 +1,17 @@
+name: 17_2_working_with_actions_js
+
+on:
+  workflow_dispatch:
+
+jobs:
+  dependency-update:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ${{ env.working-directory }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for dependency updates
+        uses: ./.github/actions/js-dependency-update
+        
+    
