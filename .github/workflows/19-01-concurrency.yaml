@@ -1,0 +1,15 @@
+name: 19_ managing Concurrency 
+
+on:
+    workflow_dispatch:
+        
+concurrency:
+    group: ${{github.workflow}} - ${{github.ref}}
+jobs:
+    ping:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: random step
+              run: echo ' random step'
+              
